@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2021 at 04:01 AM
+-- Generation Time: Mar 04, 2021 at 09:29 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -72,6 +72,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `PRODUCTID` int(16) NOT NULL,
   `PNAME` varchar(16) NOT NULL,
+  `CATEGORY` varchar(16) NOT NULL COMMENT 'Type of Drug',
   `PSTOCK` int(16) NOT NULL,
   `PRICE` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
