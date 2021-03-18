@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2021 at 08:33 PM
+-- Generation Time: Mar 18, 2021 at 08:51 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -40,36 +40,21 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`PRODUCTID`, `PNAME`, `CATEGORY`, `PSTOCK`, `PRICE`) VALUES
-(1, 'Vitamin A', '0', 100, 10),
-(2, 'Vitamin B', '0', 100, 15),
-(3, 'Vitamin C', '0', 100, 20),
-(4, 'Vitamin D', '0', 100, 25),
-(5, 'Vitamin E', '0', 100, 30),
-(6, 'Vitamin F', '1', 100, 10),
-(7, 'Vitamin G', '1', 100, 15),
-(8, 'Vitamin H', '1', 100, 20),
-(9, 'Vitamin I', '1', 100, 25),
-(10, 'Vitamin J', '1', 100, 30),
-(11, 'Vitamin K', '2', 100, 10),
-(12, 'Vitamin L', '2', 100, 15),
-(13, 'Vitamin M', '2', 100, 20),
-(14, 'Vitamin N', '2', 100, 25),
-(15, 'Vitamin O', '2', 100, 30),
-(16, 'Vitamin A', '0', 100, 10),
-(17, 'Vitamin B', '0', 100, 15),
-(18, 'Vitamin C', '0', 100, 20),
-(19, 'Vitamin D', '0', 100, 25),
-(20, 'Vitamin E', '0', 100, 30),
-(21, 'Vitamin F', '1', 100, 10),
-(22, 'Vitamin G', '1', 100, 15),
-(23, 'Vitamin H', '1', 100, 20),
-(24, 'Vitamin I', '1', 100, 25),
-(25, 'Vitamin J', '1', 100, 30),
-(26, 'Vitamin K', '2', 100, 10),
-(27, 'Vitamin L', '2', 100, 15),
-(28, 'Vitamin M', '2', 100, 20),
-(29, 'Vitamin N', '2', 100, 25),
-(30, 'Vitamin O', '2', 100, 30);
+(1, 'Vitamin A', 'Child', 100, 10),
+(2, 'Vitamin B', 'Child', 100, 15),
+(3, 'Vitamin C', 'Child', 100, 20),
+(4, 'Vitamin D', 'Child', 100, 25),
+(5, 'Vitamin E', 'Child', 100, 30),
+(6, 'Vitamin F', 'Adult', 100, 10),
+(7, 'Vitamin G', 'Adult', 100, 15),
+(8, 'Vitamin H', 'Adult', 100, 20),
+(9, 'Vitamin I', 'Adult', 100, 25),
+(10, 'Vitamin J', 'Adult', 100, 30),
+(11, 'Vitamin K', 'Elderly', 100, 10),
+(12, 'Vitamin L', 'Elderly', 100, 15),
+(13, 'Vitamin M', 'Elderly', 100, 20),
+(14, 'Vitamin N', 'Elderly', 100, 25),
+(15, 'Vitamin O', 'Elderly', 100, 30);
 
 --
 -- Indexes for dumped tables
@@ -89,7 +74,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `PRODUCTID` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `PRODUCTID` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
