@@ -9,17 +9,17 @@
 	align-items: center;
 	padding: 20px;
 }
-nav{
+nav.banner{
 	flex: 1;
 	text-align: right;
 }
 
-nav ul{
+nav.banner ul{
 	display: inline-block;
 	list-style-type: none;
 }
 
-nav ul li{
+nav.banner ul li{
 	display: inline-block;
 	margin-right: 20px;
 }
@@ -78,7 +78,9 @@ p{
 
 .header{
 	background: radial-gradient(#fff,#00a6d7);
-	
+
+	position: relative;
+  	min-height: 100vh;
 }
 
 .header .row{
@@ -107,8 +109,13 @@ p{
 	background: #000;
 	color:#8a8a8a;
 	font-size: 14px;
-	padding: 60px 0 20px;
+	padding: 0px 0px 20px;
+
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
+
 .footer p{
 	color:#8a8a8a;
 }
@@ -129,12 +136,42 @@ p{
 	display: none;
 }
 
+/* Styles used for vitimins_worker.php and associated files */
+main.box {
+	box-sizing: border-box;
+	padding-bottom: 15px;
+}
+
+.products_row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+/* Clearfix (clear floats) */
+.products_row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.products_column {
+	float: left;
+	width: 50%;
+	padding: 5px;
+}
+
+.product_column {
+	float: left;
+	width: 33%;
+	padding: 5px;
+}
+
 
 /* Media Query */
 
 @media only screen and (max-width: 800px){
 
-	nav ul{
+	nav.banner ul{
 		position: absolute;
 		top: 70px;
 		left: 0;
@@ -143,18 +180,18 @@ p{
 		overflow: hidden;
 		transition: max-height 0.5s;
 	}
-	
-	nav ul li{
+
+	nav.banner ul li{
 		display: block;
 		margin-right: 50px;
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-	
-	nav ul li a{
+
+	nav.banner ul li a{
 		color: #fff;
 	}
-	
+
 	.menu-icon{
 		display: block;
 		cursor: pointer;
