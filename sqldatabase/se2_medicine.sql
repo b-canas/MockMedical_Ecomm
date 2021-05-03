@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2021 at 11:38 AM
+-- Generation Time: May 03, 2021 at 09:17 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -33,6 +33,13 @@ CREATE TABLE `carts` (
   `AMOUNT` int(16) NOT NULL COMMENT 'Number of items with the same id ordered - must be truncated everytime called'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`USERID`, `PRODUCTID`, `AMOUNT`) VALUES
+(2, 1001, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -43,10 +50,20 @@ CREATE TABLE `orderno` (
   `ORDERNO` int(16) NOT NULL COMMENT 'Autoincremented - id of order of which "orders" are all derived and grouped by',
   `USERID` int(16) NOT NULL COMMENT 'FK users who initiated the order',
   `TOTALCOST` float NOT NULL COMMENT 'Total cost of the order',
-  `ATTIME` date NOT NULL DEFAULT current_timestamp() COMMENT 'Time the order was originally made',
+  `ATTIME` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Time the order was originally made',
   `STATUS` varchar(16) NOT NULL COMMENT 'Status of the order to be updated manually',
-  `LASTMOD` date NOT NULL DEFAULT current_timestamp() COMMENT 'Last time the order was updated'
+  `LASTMOD` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Last time the order was updated'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderno`
+--
+
+INSERT INTO `orderno` (`ORDERNO`, `USERID`, `TOTALCOST`, `ATTIME`, `STATUS`, `LASTMOD`) VALUES
+(3, 2, 5, '0000-00-00 00:00:00', 'READY', '0000-00-00 00:00:00'),
+(4, 2, 5, '2021-05-03 00:00:00', 'SHIPPED', '2021-05-03 00:00:00'),
+(5, 2, 5, '2021-05-03 00:00:00', 'DELIVERED', '2021-05-03 00:00:00'),
+(6, 2, 5, '2021-05-03 00:00:00', 'CANCELLED', '2021-05-03 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -170,7 +187,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orderno`
 --
 ALTER TABLE `orderno`
-  MODIFY `ORDERNO` int(16) NOT NULL AUTO_INCREMENT COMMENT 'Autoincremented - id of order of which "orders" are all derived and grouped by';
+  MODIFY `ORDERNO` int(16) NOT NULL AUTO_INCREMENT COMMENT 'Autoincremented - id of order of which "orders" are all derived and grouped by', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
