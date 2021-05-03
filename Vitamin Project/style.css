@@ -97,6 +97,11 @@ p{
 	padding: 10px;
 	min-width: 150px;
 	margin-bottom: 50px;
+	transition: transform 0.5s;
+}
+
+.col-5:hover{
+	transform: translateY(-5px);
 }
 
 .col-5 img{
@@ -160,6 +165,26 @@ p{
 		cursor: pointer;
 	}
 }
+
+
+
+
+/*-----------------Product Page--------------*/
+
+.row-2{
+	justify-content: space-between;
+	margin: 100px auto 50px;
+}
+
+select{
+	border: 1px solid #00008b;
+	padding: 5px;
+}
+
+select:focus{
+	outline: none;
+}
+
 
 /* Media Query for Mobile */
 

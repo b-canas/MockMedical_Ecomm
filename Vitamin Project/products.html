@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial scale=1.0">
+	<title>All Products - VitiMins</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+		<div class="container">
+		
+			<div class="navbar">
+				<div class="logo">
+					<!img src="images/ " width="125px">
+				</div>
+				
+				<nav>
+					<ul id="MenuItems">
+						<li><a href="">Home</a></li>
+						<li><a href="">Products</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="">Contact</a></li>
+						<li><a href="">Account</a></li>
+					</ul>
+				</nav>
+				<img src="images/cart.png" width="30px" height="30px">
+				<img src="images/menu.png" class="menu-icon"
+				onclick="menutoggle()">
+			</div>
+			
+		</div>
+	
+		<div class="small-container">
+		
+			<div class="row row-2">
+				<h2>All Products</h2>
+				<select>
+					<option>Sort by Default</option>
+					<option>Sort by Age</option>
+					<option>Sort by Price</option>
+				</select>
+			</div>
+		
+			<div class="row">
+				<div class="col-5">
+					<img src="images/bottleA.png">
+					<h4>Vitamin A</h4>
+					<p>$10.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleB.png">
+					<h4>Vitamin B</h4>
+					<p>$15.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleC.png">
+					<h4>Vitamin C</h4>
+					<p>$20.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleD.png">
+					<h4>Vitamin D</h4>
+					<p>$25.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleE.png">
+					<h4>Vitamin E</h4>
+					<p>$30.00</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-5">
+					<img src="images/bottleF.png">
+					<h4>Vitamin F</h4>
+					<p>$10.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleG.png">
+					<h4>Vitamin G</h4>
+					<p>$15.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleH.png">
+					<h4>Vitamin H</h4>
+					<p>$20.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleI.png">
+					<h4>Vitamin I</h4>
+					<p>$25.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleJ.png">
+					<h4>Vitamin J</h4>
+					<p>$30.00</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-5">
+					<img src="images/bottleK.png">
+					<h4>Vitamin K</h4>
+					<p>$10.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleL.png">
+					<h4>Vitamin L</h4>
+					<p>$15.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleM.png">
+					<h4>Vitamin M</h4>
+					<p>$20.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleN.png">
+					<h4>Vitamin N</h4>
+					<p>$25.00</p>
+				</div>
+				<div class="col-5">
+					<img src="images/bottleO.png">
+					<h4>Vitamin O</h4>
+					<p>$30.00</p>
+				</div>
+			</div>
+		</div>
+	
+	<! ------Footer------ />
+	
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col-1">
+					<p>Our Purpose Is To Distribute Vitamins Quickly
+					and Easily To the Confort of Your Own Home.</p>
+				</div>
+			</div>
+			<hr>
+			<p class="copyright">Copyright 2021 - Software Engineering II </p>
+		</div>
+	</div>
+	<! Java Script for the Menu Toggle Button >
+	<script>
+		var MenuItems = document.getElementById("MenuItems");
+		
+		MenuItems.style.maxHeight = "0px";
+		
+		function menutoggle(){
+			if(MenuItems.style.maxHeight == "0px")
+			{
+				MenuItems.style.maxHeight = "200px";
+			}
+			else
+			{
+				MenuItems.style.maxHeight = "0px";
+			}
+		}
+	</script>
+</body>
+</html>
