@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+nav.banner{
+    flex: 1;
+    text-align: right;
+}
+
+nav.banner ul{
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav.banner ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.header{
+    background: radial-gradient(#fff,#00a6d7);
+
+    position: relative;
+    min-height: 100vh;
+}
+
+.header .row{
+    margin-top: 70px;
+}
+
+.footer{
+    background: #000;
+    color:#8a8a8a;
+    font-size: 14px;
+    padding: 0px 0px 20px;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p{
+    color:#8a8a8a;
+}
+
+.footer hr{
+    border: none;
+    background: #b5b5b5;
+    height: 1px;
+    margin: 20px;
+}
+
+.copyright{
+    text-align: center;
+}
+
+.menu-icon{
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+main.box {
+    box-sizing: border-box;
+    padding-bottom: 15px;
+}
+
+.products_row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* Clearfix (clear floats) */
+.products_row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.products_column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+}
+
+.product_column {
+    float: left;
+    width: 33%;
+    padding: 5px;
+}
+
+table.full_page_table {
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+table.full_page_table tr td {
+     text-align: center;
+}
+
+/* Media Query */
+
+@media only screen and (max-width: 800px){
+
+    nav.banner ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav.banner ul li{
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav.banner ul li a{
+        color: #fff;
+    }
+
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/* Media Query for Mobile */
+
+@media only screen and (max-width: 600px){
+    .row{
+    text-align: center;
+    }
+    .col-2,.col-5{
+        flex-basis: 100%;
+    }
+}
