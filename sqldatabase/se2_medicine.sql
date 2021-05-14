@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2021 at 09:17 PM
+-- Generation Time: May 14, 2021 at 09:40 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -38,7 +38,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`USERID`, `PRODUCTID`, `AMOUNT`) VALUES
-(2, 1001, 7);
+(2, 1001, 5),
+(2, 1002, 20),
+(2, 1003, 40);
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ INSERT INTO `products` (`PRODUCTID`, `PNAME`, `CATEGORY`, `PSTOCK`, `PRICE`) VAL
 CREATE TABLE `users` (
   `USERID` int(16) NOT NULL COMMENT 'Autoincremented PK that indicates this user across all tables',
   `USERNAME` varchar(16) NOT NULL COMMENT 'Name of user, could be volatile',
-  `PASSWORD` varchar(16) NOT NULL COMMENT 'Password of user, must be encrypted?',
+  `PASSWORD` varchar(128) NOT NULL COMMENT 'Password of user, must be encrypted?',
   `ACCESS` int(16) NOT NULL COMMENT 'Access level of "user" - -1 means customer, 0 is highest level admin, increase value means lesser access',
   `FNAME` varchar(64) NOT NULL COMMENT 'First name of user',
   `LNAME` varchar(64) NOT NULL COMMENT 'Last name of user',
@@ -144,13 +146,6 @@ INSERT INTO `users` (`USERID`, `USERNAME`, `PASSWORD`, `ACCESS`, `FNAME`, `LNAME
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `carts`
---
-ALTER TABLE `carts`
-  ADD PRIMARY KEY (`USERID`),
-  ADD KEY `RelCartsToProductid` (`PRODUCTID`);
 
 --
 -- Indexes for table `orderno`
@@ -198,13 +193,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `carts`
---
-ALTER TABLE `carts`
-  ADD CONSTRAINT `RelCartsToProductid` FOREIGN KEY (`PRODUCTID`) REFERENCES `products` (`PRODUCTID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `RelCartsToUserid` FOREIGN KEY (`USERID`) REFERENCES `users` (`USERID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orderno`
