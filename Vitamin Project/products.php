@@ -4,6 +4,13 @@ require ('product_DBaccess.php');
 require ('user_DBaccess.php');
 require ('orders_DBaccess.php');
 
+//Check to ensure user is logged in and has the correct access priveleges for customer view
+session_start();
+
+if (!isset($_SESSION['access']) || $_SESSION['access'] != -1) {
+    header('location: index.php');
+}
+
 $categories = get_categories();
 
 ?>
@@ -32,6 +39,7 @@ $categories = get_categories();
 						<li><a href="">About</a></li>
 						<li><a href="">Contact</a></li>
 						<li><a href="">Account</a></li>
+						<li><a href="logout.php">Logout</a></li>
 					</ul>
 				</nav>
 				<img src="images/cart.png" width="30px" height="30px">
@@ -61,7 +69,7 @@ $categories = get_categories();
 						<h4><?php echo $product_entry['PNAME']; ?></h4>
 						<p>$<?php echo number_format($product_entry['PRICE'], 2); ?></p>
 						Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
-									name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px";>
+									name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
 					</div>
 
 			<?php } echo '</div>'; } ?>
