@@ -11,22 +11,22 @@
 		include 'dbSendRegistrationInfo.php';
 		?>
 		
-	
-		<div class="login-form">
-			<h1>Login</h1>
+		<form action="loginAccount.php" method="post">
+			<div class="login-form">
+				<h1>Login</h1>
 
-			<label for="username"></label>
-			<input type="text" placeholder="Username" name="username" class="input-box"><br>
+				<label for="username"></label>
+				<input type="text" id="username" placeholder="Username" name="username" class="input-box" required><br>
 
-			<label for="password"></label>
-			<input type="text" placeholder="Password" name="password" class="input-box"><br>
+				<label for="password"></label>
+				<input type="password" id="password" placeholder="Password" name="password" class="input-box" required><br>
 
-			<button type="submit" style="background-color: 008CBA;">Login</button>
+				<button type="submit" id="loginButton" style="background-color: 008CBA;">Login</button>
 
-			<hr>
-			
-			<p> Don't have an account? Sign up <a href="createAccount.php">here</a></p>
-			
+				<hr>
+				
+				<p> Don't have an account? Sign up <a href="createAccount.php">here</a></p>
+		</form>
 			
 
 
