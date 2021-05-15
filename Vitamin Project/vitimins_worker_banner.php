@@ -19,7 +19,7 @@
                     <li><a href="?action=show_users">Users</a></li>
                     <li><a href="?action=view_user_orders">Orders</a></li>
                     <li><a href="">Account Management</a></li>
-                    <li><a href="">Log Off</a></li>
+                    <li><a href="?action=log_off">Log Off</a></li>
                 </ul>
             </nav>
             <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
