@@ -35,7 +35,7 @@ function get_products_by_category($category) {
 
 /*
  * Function to get all unique products
- * returns a mysqli_result object with all products with a matching categoryID
+ * returns a mysqli_result object with all products
  */
 function get_all_products() {
     global $conn;
@@ -44,7 +44,7 @@ function get_all_products() {
 
     //if-statement to test if prepare() worked properly
     if (!$stmt) {
-        echo "prepare() returned false, for get_products_by_category";
+        echo "prepare() returned false, for get_all_products";
         $conn->close;
         exit;
     }
@@ -52,7 +52,7 @@ function get_all_products() {
     $result = $stmt->execute();
 
     if (!$result) {
-        echo 'An error has occurred when attempting to access products by category';
+        echo 'An error has occurred when attempting to get all products';
     }
 
     $result = $stmt->get_result();
@@ -143,7 +143,7 @@ function add_product($product_id, $product_name, $category, $product_stock, $pri
 {
     global $conn;
 
-    $stmt = $db->prepare("INSERT INTO products (PRODUCTID, PNAME, CATEGORY, PSTOCK, PRICE)
+    $stmt = $conn->prepare("INSERT INTO products (PRODUCTID, PNAME, CATEGORY, PSTOCK, PRICE)
                             VALUES (?, ?, ?, ?, ?)");
 
     if (!$stmt) {
@@ -162,6 +162,50 @@ function add_product($product_id, $product_name, $category, $product_stock, $pri
     $result = $stmt->get_result();
     $stmt->close();
     return $result;
+}
+
+/*
+ * Function to update a specific column of a certain product, whose ID is passed
+ * as an arguement: $productID
+ */
+function update_column($product_id, $column, $value) {
+    global $conn;
+
+    //must use a switch statement for the specfic columns
+    switch ($column) {
+        case 'PRODUCTID':
+            $stmt = $conn->prepare("UPDATE products SET PRODUCTID = ? WHERE PRODUCTID = ?");
+            $stmt->bind_param('ii', $value, $product_id);
+            break;
+
+        case 'PNAME':
+            $stmt = $conn->prepare("UPDATE products SET PNAME = ? WHERE PRODUCTID  = ?");
+            $stmt->bind_param('si', $value, $product_id);
+            break;
+
+        case 'CATEGORY':
+            $stmt = $conn->prepare("UPDATE products SET CATEGORY = ? WHERE PRODUCTID  = ?");
+            $stmt->bind_param('si', $value, $product_id);
+            break;
+
+        case 'PSTOCK':
+            $stmt = $conn->prepare("UPDATE products SET PSTOCK = ? WHERE PRODUCTID  = ?");
+            $stmt->bind_param('ii', $value, $product_id);
+            break;
+
+        case 'PRICE':
+            $stmt = $conn->prepare("UPDATE products SET PRICE = ? WHERE PRODUCTID  = ?");
+            $stmt->bind_param('di', $value, $product_id);
+            break;
+    }
+
+    $result = $stmt->execute();
+
+    if (!$result) {
+        echo 'An error has occurred when attempting to update product';
+    }
+
+    $stmt->close();
 }
 
 ?>

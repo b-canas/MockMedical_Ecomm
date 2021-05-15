@@ -1,3 +1,5 @@
+    <script type="text/javascript" src="vitimins_scripts.js"></script> <!--At this point of the file. Anything needing a script is created -->
+
     <div class="footer">
         <div class="container">
             <div class="row">
