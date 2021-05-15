@@ -4,7 +4,12 @@ require ('product_DBaccess.php');
 require ('user_DBaccess.php');
 require ('orders_DBaccess.php');
 
-//will need to add other DB accesses for other functions
+//Check to ensure user is logged in and has the correct access priveleges for admin view
+session_start();
+
+if (!isset($_SESSION['access']) || $_SESSION['access'] != 0) {
+    header('location: index.php');
+}
 
 /*
  * $action is a variable that will determine what page to redirect to and what variabels to
@@ -299,6 +304,10 @@ else if ($action == 'update_user') {
 
 } //END OF if ($action == 'update_user')
 
+/*
+ * The action 'delete_user' is accessible via a button in current_users.php
+ * Deletes a user via the unique user ID
+ */
 else if ($action == 'delete_user') {
 
     $userID = filter_input(INPUT_POST, 'user_id');
@@ -360,6 +369,10 @@ else if ($action == 'view_user_orders') {
     include('admin_files/current_orders.php');
 } //END OF if ($action == 'view_user_orders')
 
+/*
+ * The action 'update_order_status' is accessible via a select form in current_orders.php and order_details.php
+ * Will update a specific order number status to a new status (possible statuses: READY, SHIPPED, DELIVERED, or CANCELLED)
+ */
 else if ($action == 'update_order_status') {
 
     $orderno = filter_input(INPUT_POST, 'order_no');
@@ -381,6 +394,11 @@ else if ($action == 'update_order_status') {
 
 } //END OF if ($action == 'update_order_status')
 
+/*
+ * The action 'view_order_details' is accessible via a button in current_orders.php
+ * Will display a page showing all information about a specific order number, including specific items in the order
+ * Here the order status can be updated.
+ */
 else if ($action == 'view_order_details') {
 
     $orderno = filter_input(INPUT_GET, 'order_no');
@@ -393,6 +411,17 @@ else if ($action == 'view_order_details') {
     $statusOptions = get_status_options();
 
     include('admin_files/order_details.php');
+}
+
+/*
+ * The action 'log_off' destroys the active cookie which contains the current logged in user information
+ * then redirects to the login page
+ */
+else if ($action == 'log_off') {
+
+    session_destroy();
+
+    header('location: index.php');
 }
 
 ?>
