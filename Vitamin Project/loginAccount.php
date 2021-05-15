@@ -1,39 +1,30 @@
 <?php
-//include 'dbConnection.php'
+require ('dbConnection.php');
+require ('user_DBaccess.php');
 
-//if (isset($_POST["loginButton"])) {
-	//$username = $_POST["username"];
-	//$password = $_POST["password"];
-    
-    //$query = "SELECT * from users WHERE username = '$username' AND password ='$password'"
-    //$row = mysqli_fetch_array($query);
+session_start();
 
-    //if ($row['username'] == $username && $row['password'] == $password) {
-        //echo "Login success"
-    //}
-    //else {
-        //echo "Login failed."
-    //}
-?>
-
-<?php
-include 'dbConnection.php';
-
+//Get username and password variables from Login Form
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-    
-$query = "SELECT * from users WHERE USERNAME = '$username'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+//get_user_withLogin is a function from user_DBaccess.php
+$user = get_user_withLogin($username, $password);
 
-if ($row['USERNAME'] == $username && $row['PASSWORD'] == password_verify($password, $row['PASSWORD'])) {
+if ($user != NULL) {
+    //A user with matching credentials was found
+    //Save important user variables in the cookie
     $_SESSION['username'] = $username;
-    $_SESSION['success'] = "You are logged in";
-    header('location: navigation.html');
+    $_SESSION['user_id'] = $user['USERID'];
+    $_SESSION['access'] = $user['ACCESS'];
+
+    if ($_SESSION['access'] == 0)
+        header('location: vitimins_worker.php');
+    else
+        header('location: products.php');
 }
 else {
-    //echo "Login failed.";
+    //Login Failed
     header('location: index.php');
 }
 ?>
