@@ -69,7 +69,7 @@ function get_all_customer_userIds() {
 function get_user_withLogin($username, $password) {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE USERNAME = ? AND PASSWORD = ?");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE USERNAME = ?");
 
     if (!$stmt) {
         echo "prepare() returned false, for get_user_withLogin";
@@ -77,9 +77,7 @@ function get_user_withLogin($username, $password) {
         exit;
     }
 
-    //ADD PASSWORD HASH FUNCTION HERE
-
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $result = $stmt->execute();
 
     if (!$result) {
@@ -89,10 +87,16 @@ function get_user_withLogin($username, $password) {
     $result = $stmt->get_result();
 
     if ($result->num_rows === 0) {
-        //no user with matching credentials found
-        return false;
+        //no user with matching username found
+        return NULL;
     } else {
-        return $result;
+        //user with matching username exists, now check password field
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['PASSWORD']))
+            return $user;
+        else
+            return NULL;
     }
 }
 
