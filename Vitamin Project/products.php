@@ -11,9 +11,6 @@ if (!isset($_SESSION['access']) || $_SESSION['access'] != -1) {
     header('location: index.php');
 }
 
-//TODO MERGE THIS OR WHATEVER
-header('location: products_logged.php');
-
 $categories = get_categories();
 
 ?>
