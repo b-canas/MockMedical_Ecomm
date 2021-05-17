@@ -13,7 +13,8 @@
 		$userid=$_SESSION['userid'];
 		$password=$_SESSION['password'];
 		$access=$_SESSION['access'];
-		echo "loggedin with $userid $username  $password $access";
+		
+		echo "loggedin";
 	}
 	else {
 		echo "unlogged";
@@ -21,12 +22,11 @@
 	echo "<br>";
 	//CPY -^-
 ?> 
-
 <html lang = "en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial scale=1.0">
-		<title>VitiMins</title>
+		<title>VitiMins - Products</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
@@ -41,7 +41,7 @@
 					
 					<nav>
 						<ul id="MenuItems">
-							<li><a href="index.php" class="active">Home</a></li>
+							<li><a href="index.php" >Home</a></li>
 							<?php
 								if($loggedin) {
 									echo "<a href=\"logout_limbo.php\">Logout</a>";
@@ -50,7 +50,7 @@
 									echo "<a href=\"login.php\">Login</a>";
 								}
 							?>
-							<li><a href="products_limbo.php">Products</a></li>
+							<li><a href="products_limbo.php" class="active">Products</a></li>
 							<li><a href="">About</a></li>
 							<li><a href="">Contact</a></li>
 							<li><a href="">Account</a></li>
@@ -65,14 +65,53 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-2">
-						<h1>VitiMins!</h1>
-						<p>Get your Vital Vitamins from the best Vitamin Distributor in the US!</p>
-						<a href="" class="btn">Explore Now &#8594;</a>
+					<div class="col-5">
+						<!-- EDIT-->
+						<h1 class="center-text">List of Products</h1>
+			<br>
+			<form class="center-text" method="post" action="cart_view_limbo.php">
+				<table>
+					<tr>
+						<th>Proudct ID</th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Amount</th>
+						<th>Cost</th>
+					</tr>
+					<?php
+						require 'dbInteract.php';
+						
+						$result=getCart($userid);
+						while($row=$result->fetch_assoc()) {
+							$productid=$row['PRODUCTID'];
+							$amount=$row['AMOUNT'];
+							
+							$product=getProduct($productid);
+							$pname=$product['PNAME'];
+							$price=$product['PRICE'];
+							
+							$cost=$price*$amount;
+							
+							echo "<tr>
+								<td>$productid</td>
+								<td>$pname</td>
+								<td>$price</td>
+								<td><input type=\"number\" id=\"$productid\" name=\"$productid\" value=$amount></td>
+								<td>$cost</td>
+							</tr>";
+						}
+						echo "<tr>
+							<td><button type=\"submit\" name=\"update\">Update Cart</button></td>
+							<td><button type=\"submit\" name=\"buy\">Buy Now</button></td>
+						</tr>";
+					?>
+					
+					
+				</table>
+			</form>
+						<!-- ENDIT -->
 					</div>
-					<div class="col-2">
-						<img src="images/vitaminBottle.png">
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -91,22 +130,12 @@
 				<p class="copyright">Copyright 2021 - Software Engineering II </p>
 			</div>
 		</div>
-		<! Java Script for the Menu Toggle Button >
-		<script>
-			var MenuItems = document.getElementById("MenuItems");
-			
-			MenuItems.style.maxHeight = "0px";
-			
-			function menutoggle(){
-				if(MenuItems.style.maxHeight == "0px")
-				{
-					MenuItems.style.maxHeight = "200px";
-				}
-				else
-				{
-					MenuItems.style.maxHeight = "0px";
-				}
-			}
-		</script>
+		
 	</body>
 </html>
+
+
+
+
+
+
