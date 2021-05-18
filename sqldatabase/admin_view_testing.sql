@@ -142,7 +142,7 @@ INSERT INTO `products` (`PRODUCTID`, `PNAME`, `CATEGORY`, `PSTOCK`, `PRICE`) VAL
 CREATE TABLE `users` (
   `USERID` int(16) NOT NULL COMMENT 'Autoincremented PK that indicates this user across all tables',
   `USERNAME` varchar(16) NOT NULL COMMENT 'Name of user, could be volatile',
-  `PASSWORD` varchar(16) NOT NULL COMMENT 'Password of user, must be encrypted?',
+  `PASSWORD` varchar(128) NOT NULL COMMENT 'Password of user, must be encrypted?',
   `ACCESS` int(16) NOT NULL COMMENT 'Access level of "user" - -1 means customer, 0 is highest level admin, increase value means lesser access',
   `FNAME` varchar(64) NOT NULL COMMENT 'First name of user',
   `LNAME` varchar(64) NOT NULL COMMENT 'Last name of user',
