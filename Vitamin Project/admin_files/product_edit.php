@@ -38,7 +38,7 @@
             <br>
 
             <label>Image File Location:</label>
-            <input type="text" name="new_image" size="30" maxlength="64" required/>
+            <input type="text" name="new_image" size="30" maxlength="64"/>
             <br>
 
             <label>&nbsp;</label>
