@@ -77,11 +77,18 @@ else if ($action == 'view_product') {
  *
  */
 else if ($action == 'show_edit_form') {
-    $productID = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT); //check POST level for productID variable
+
+    $productID = filter_input(INPUT_POST, 'product_id'); //check POST level for productID variable
+    if ($productID == NULL) {
+        $productID = filter_input(INPUT_GET, 'product_id');
+    }
+
     $categories = get_categories();
 
     $product = get_product($productID);
     $product_entry = $product->fetch_assoc();
+
+    $products = get_all_products(); //will be used to access all existing product IDs
 
     include('admin_files/product_edit.php');
 } //END OF if ($action == 'show_edit_form'
@@ -115,6 +122,11 @@ else if ($action == 'update_product') {
         update_column($productID, 'PRICE', $newPrice);
     }
 
+    $newImage = filter_input(INPUT_POST, 'new_image');
+    if ($newImage !== '' && $newImage !== NULL && $newImage !== FALSE) {
+        update_column($productID, 'PIMAGE', $newImage);
+    }
+
     //THIS MUST BE LAST CHECK IN FORM
     //Since all sql queries use the product id as a key, ID must be changed last
     $newID = filter_input(INPUT_POST, 'new_id');
@@ -122,10 +134,10 @@ else if ($action == 'update_product') {
         update_column($productID, 'PRODUCTID', $newID);
     }
 
-    if ($newCategory !== '' && $newCategory !== NULL && $newCategory !== FALSE)
-        header("Location: ?category=$newCategory");
+    if ($newID !== '' && $newID !== NULL && $newID !== FALSE)
+        header("Location: ?action=show_edit_form&product_id=$newID");
     else
-        header("Location: ?category=$category");
+        header("Location: ?action=show_edit_form&product_id=$productID");
 } //END OF if ($action == 'update_product')
 
 /*
@@ -165,8 +177,9 @@ else if ($action == 'add_product') {
     $category = filter_input(INPUT_POST, 'category');
     $initialStock = filter_input(INPUT_POST, 'stock');
     $price = filter_input(INPUT_POST, 'price');
+    $image = filter_input(INPUT_POST, 'image');
 
-    add_product($productID, $productName, $category, $initialStock, $price);
+    add_product($productID, $productName, $category, $initialStock, $price, $image);
 
     //After product insertion, return to product add form
     //These variables are created to act as sort of a reference when creating a new product
@@ -212,15 +225,22 @@ else if ($action == 'show_user_edit_form') {
     $current_phone = $user_entry['PHONE'];
     $current_email = $user_entry['EMAIL'];
 
+    $current_users = get_all_users();   //will be used to access all existing user usernames
+
     include('admin_files/admin_user_management.php');
 
 } //END OF if ($action == 'show_user_edit_form')
 
+/*
+ * The action 'show_add_user_form' simply will call a page that displays a user registration form
+ * A variable which contains data about currently registered users is created in order to validate
+ * the new user's username.  Usernames must be unique to each user.
+ */
 else if ($action == 'show_add_user_form') {
 
-    //No variables are prepared here. The form is called
-    include('admin_files/admin_add_user.php');
+    $current_users = get_all_users();   //will be used to access all existing user usernames
 
+    include('admin_files/admin_add_user.php');
 }
 
 else if ($action == 'add_user') {
@@ -383,7 +403,7 @@ else if ($action == 'update_order_status') {
 
     $viewOrderDetailsFlag = filter_input(INPUT_POST, 'view_order_details_flag');    //If this variable is set, go to view_order_details action
 
-    if ($newStatus != $oldStatus) {
+    if ($newStatus != NULL && $newStatus != $oldStatus) {
         update_orderno_status($orderno, $newStatus);
     }
 

@@ -139,12 +139,12 @@ function delete_product($product_id) {
 /*
  * Function to add a product entry to the product table
  */
-function add_product($product_id, $product_name, $category, $product_stock, $price)
+function add_product($product_id, $product_name, $category, $product_stock, $price, $image)
 {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO products (PRODUCTID, PNAME, CATEGORY, PSTOCK, PRICE)
-                            VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO products (PRODUCTID, PNAME, CATEGORY, PSTOCK, PRICE, PIMAGE)
+                            VALUES (?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         echo "prepare() returned false, for add_product";
@@ -152,7 +152,7 @@ function add_product($product_id, $product_name, $category, $product_stock, $pri
         exit;
     }
 
-    $stmt->bind_param("issid", $product_id, $product_name, $category, $product_stock, $price);
+    $stmt->bind_param("issids", $product_id, $product_name, $category, $product_stock, $price, $image);
     $result = $stmt->execute();
 
     if (!$result) {
@@ -197,6 +197,9 @@ function update_column($product_id, $column, $value) {
             $stmt = $conn->prepare("UPDATE products SET PRICE = ? WHERE PRODUCTID  = ?");
             $stmt->bind_param('di', $value, $product_id);
             break;
+        case 'PIMAGE':
+            $stmt = $conn->prepare("UPDATE products SET PIMAGE = ? WHERE PRODUCTID = ?");
+            $stmt->bind_param('si', $value, $product_id);
     }
 
     $result = $stmt->execute();

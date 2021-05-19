@@ -4,7 +4,7 @@
     <div class="products_column">
         <h1>Edit/Update User</h1>
 
-        <form action="vitimins_worker.php" method="post">
+        <form action="vitimins_worker.php" method="post" name="admin_update_user_form" onsubmit="return validateUserUpdate()">
             <input type="hidden" name="action" value="update_user">
             <input type="hidden" name="user_id" value="<?php echo $user_entry['USERID']; ?>">
 
@@ -76,5 +76,14 @@
       </div>
     </section>
 </main>
+
+<!-- This is a hidden table that does not take up space. Needed for form validation -->
+<table style="display: none;" id="existing_usernames_table">
+    <tr>
+        <?php while($user_entry = $current_users->fetch_assoc()) { ?>
+            <td><?php echo $user_entry['USERNAME']; ?></td>
+        <?php } //END OF while loop ?>
+    </tr>
+</table>
 
 <?php include 'footer.php' ?>

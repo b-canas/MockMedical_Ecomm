@@ -65,11 +65,16 @@ $categories = get_categories();
 				<?php while ($product_entry = $products->fetch_assoc()) { ?>
 
 					<div class="col-5">
-						<img src="images/bottleA.png">
+						<img src="<?php echo $product_entry['PIMAGE']; ?>">
 						<h4><?php echo $product_entry['PNAME']; ?></h4>
 						<p>$<?php echo number_format($product_entry['PRICE'], 2); ?></p>
-						Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
-									name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
+						<form action="?" method="post"> <!--Button Does NOT work yet -->
+							Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
+										name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
+
+							<input type="submit" name="add_to_cart" id="add_to_cart" value="Add to Cart">
+						</form>
+
 					</div>
 
 			<?php } echo '</div>'; } ?>
