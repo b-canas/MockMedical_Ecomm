@@ -48,7 +48,7 @@
 	
 	echo "done.";
 	nl();
-	header("location: orders.php");
+	header("location: orders_update.php");
 ?> 
 
 

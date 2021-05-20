@@ -72,7 +72,7 @@
 						<h1 class="center-text">A look at previous orders</h1>
 			<br>
 			<form class="center-text" method="post" action="orders_update_limbo.php">
-				<table>
+				<table="orders_table">
 					<tr>
 						<th>Order No/Product ID</th>
 						<th>Name/Username</th>
@@ -139,7 +139,7 @@
 										}
 										else if($status=="READY") {
 											echo "<option value=\"ready\" $lr>READY</option>";
-											echo "<option value=\"cancelled\" $lc>CANCELLED</option>";
+											
 										}
 										else {
 											echo "<option value=\"$status\" >$status</option>";
