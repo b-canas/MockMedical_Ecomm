@@ -102,8 +102,8 @@ $categories = get_categories();
 						<h4><?php echo $product_entry['PNAME']; ?></h4>
 						<p>$<?php echo number_format($product_entry['PRICE'], 2); ?></p>
 						<form action="products_to_cart_limbo.php" method="post">
-							Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
-										name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
+							Amount: <input type="number" id="<?php echo $product_entry['PRODUCTID']; ?>"
+										name="<?php echo $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
 
 							<input type="submit" name="cart" id="cart" value="Add to Cart">
 						
