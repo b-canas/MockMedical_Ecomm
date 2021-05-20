@@ -58,7 +58,37 @@ nav ul li{
 .btn{
 	display: inline-block;
 	background: #ff523b;
-	@@ -92,68 +91,19 @@ nav ul li{
+	color: #fff;
+	padding: 8px 30px;
+	margin: 30px 0;
+	border-radius: 30px;
+	transition: background 0.5s;
+}
+.btn:hover{
+	background: #563434;
+}
+
+.header{
+	background: radial-gradient(#fff,#00a6d7);
+
+}
+.header.row{
+	margin-top: 70px;
+}
+
+/* Container for product grid - products.php */
+.small-container{
+	max-width: 1080px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+/* Row format - products.php */
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 /* Product grid units - products.php */
 .col-5{

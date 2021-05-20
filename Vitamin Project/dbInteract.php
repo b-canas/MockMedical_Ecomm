@@ -207,8 +207,10 @@
 		}
 		echo "id:$v_userid,pid:$v_productid,amt:$v_amount";
 		nl();
-		
 		$result=$mycon->query($query);
+		print_r($mycon->error_list);
+		echo mysqli_error($mycon);
+		nl();
 		$affected=$mycon->affected_rows;
 		return $affected;
 	}
@@ -248,9 +250,10 @@
 			$amount=0;
 			
 			if(isset($v_post["$productid"])&&$v_post["$productid"]!="") {
-				echo "$productid is set with $amount";
+				
 				nl();
 				$amount=$v_post["$productid"];
+				echo "$productid is set with $amount - ";
 			}
 			else {
 				echo "$productid not set ";

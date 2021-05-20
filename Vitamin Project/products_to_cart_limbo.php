@@ -27,6 +27,10 @@
 
 	require 'dbInteract.php';
 	//cart stuff v
+	echo "\$_POST:";
+	nl();
+	print_r($_POST);
+	nl();
 	updateCart($_POST,$userid);
 	
 	echo "done";
