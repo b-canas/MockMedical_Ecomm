@@ -34,7 +34,7 @@
 	
 	if(isset($_POST['cart'])) {
 		echo "cart";
-		header("location: products_logged_added.php");
+		header("location: products_logged.php");
 		exit;
 	}
 	else if(isset($_POST['buy'])) {
