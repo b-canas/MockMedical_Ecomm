@@ -25,7 +25,7 @@
     </aside>
 
     <div class="products_column"> <!-- will display a table with products in selected category -->
-        <h2><?php echo $category;?> Products | <a href="?action=show_add_product_form"> Add New Product</a></h2>
+        <h2><?php echo $category;?> Products</h2>
         <table>
             <tr>
                 <th>ID #</th>
@@ -39,7 +39,7 @@
             </tr>
             <?php while ($product_entry = $products->fetch_assoc()) { ?>
             <tr>
-                <td style="width: 150px; text-align: center;"><?php echo $product_entry['PRODUCTID']; ?></td> <!--Product ID -->
+                <td><?php echo $product_entry['PRODUCTID']; ?> | </td> <!--Product ID -->
                 <td><?php echo $product_entry['PNAME']; ?></td> <!--Product Name -->
                 <td><?php echo $product_entry['CATEGORY']; ?></td> <!--Product Category -->
                 <td>$<?php echo number_format($product_entry['PRICE'], 2); ?></td> <!--Product Price -->
@@ -78,6 +78,9 @@
             </tr>
             <?php } ?> <!--END OF Table WHILE LOOP  -->
         </table>
+        <p>
+            <a href="?action=show_add_product_form"> Add Product</a> <!--To be built upon -->
+        </p>
     </div>
 
     </div>

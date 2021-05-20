@@ -23,15 +23,9 @@
 
             <td> <!--Current order status -->
                 <!--A form is used here to allow for order status' to be updated from this page -->
-                <form action="?" method="post" <?php echo "name=\"status_update_form".$orderDetails['ORDERNO']."\"";?>
-                            onsubmit="return validateStatusUpdate(<?php echo $orderDetails['ORDERNO']; ?>)">
+                <form action="?" method="post">
 
-                    <select id="status_choices" name="status_choices"
-                    <?php if ($orderDetails['STATUS'] == 'DELIVERED' || $orderDetails['STATUS'] == 'CANCELLED') {
-                        //if order status has the value DELIVERED or CANCELLED, disable the select list
-                        echo 'disabled';
-                    } ?>> <!--END OF select opening tag -->
-
+                    <select id="status_choices" name="status_choices">
                         <?php foreach ($statusOptions as $option) {
                             echo "<option value=\"$option\"";
                             if ($orderDetails['STATUS'] == $option)
@@ -77,7 +71,7 @@
 
         <tr>
             <td><?php echo $product_entry['PRODUCTID']; ?></td> <!--Product ID -->
-            <td><img src="<?php echo $product_entry['PIMAGE'];?>" width=100 px></td> <!--Product Image -->
+            <td><img src="Images/bottleA.png" width=100 px></td> <!--Product Image -->
             <td><?php echo $product_entry['PNAME']; ?></td> <!--Product Name -->
             <td><?php echo $product_entry['CATEGORY']; ?></td> <!--Product category -->
             <td><?php echo $item_entry['AMOUNT']; ?></td> <!--Quantity ordered of product -->

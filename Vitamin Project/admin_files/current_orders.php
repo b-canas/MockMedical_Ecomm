@@ -63,16 +63,9 @@
 
                 <td> <!--Current order status -->
                     <!--A form is used here to allow for order status' to be updated from this page -->
-                    <!-- In order for forms to have unique names, necessary for JS, the name attribute includes the orderno, which is then passed to onsubmit -->
-                    <form action="?" method="post" <?php echo "name=\"status_update_form".$order_entry['ORDERNO']."\"";?>
-                            onsubmit="return validateStatusUpdate(<?php echo $order_entry['ORDERNO']; ?>)">
+                    <form action="?" method="post">
 
-                        <select id="status_choices" name="status_choices"
-                        <?php if ($order_entry['STATUS'] == 'DELIVERED' || $order_entry['STATUS'] == 'CANCELLED') {
-                            //if order status has the value DELIVERED or CANCELLED, disable the select list
-                            echo 'disabled';
-                        } ?>> <!--END OF select opening tag -->
-
+                        <select id="status_choices" name="status_choices">
                             <?php foreach ($statusOptions as $option) {
                                 echo "<option value=\"$option\"";
                                 if ($order_entry['STATUS'] == $option)

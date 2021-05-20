@@ -11,6 +11,9 @@ if (!isset($_SESSION['access']) || $_SESSION['access'] != -1) {
     header('location: index.php');
 }
 
+//TODO MERGE THIS OR WHATEVER
+header('location: products_logged.php');
+
 $categories = get_categories();
 
 ?>
@@ -65,16 +68,11 @@ $categories = get_categories();
 				<?php while ($product_entry = $products->fetch_assoc()) { ?>
 
 					<div class="col-5">
-						<img src="<?php echo $product_entry['PIMAGE']; ?>">
+						<img src="images/bottleA.png">
 						<h4><?php echo $product_entry['PNAME']; ?></h4>
 						<p>$<?php echo number_format($product_entry['PRICE'], 2); ?></p>
-						<form action="?" method="post"> <!--Button Does NOT work yet -->
-							Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
-										name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
-
-							<input type="submit" name="add_to_cart" id="add_to_cart" value="Add to Cart">
-						</form>
-
+						Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
+									name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
 					</div>
 
 			<?php } echo '</div>'; } ?>

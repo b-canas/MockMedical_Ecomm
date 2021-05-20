@@ -24,7 +24,7 @@
 
         <div class="product_column">
             <h1><?php echo $prodName; ?></h1>
-            <img src="<?php echo $product_entry['PIMAGE'];?>">
+            <img src="Images/bottleA.png">
         </div>
 
 
@@ -43,9 +43,6 @@
 
             <p style="font-weight: bold;">Available Stock:
                 <?php echo $product_entry['PSTOCK']; ?></p>
-
-            <p style="font-weight: bold;">Image :
-                <?php echo $product_entry['PIMAGE']; ?></p>
         </div>
     </div>
 </main>
