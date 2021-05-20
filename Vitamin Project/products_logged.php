@@ -46,16 +46,17 @@ $categories = get_categories();
 					<!-- <img src="images/ " width="125px"> -->
 					<span id="text_logo"><h1>VitiMins</h1></span>
 				</div>
-					<nav class="banner">
+					
+					<nav>
 						<ul id="MenuItems">
 							<li><a href="index.php" >Home</a></li>
 							<li><a href="products_limbo.php" class="active">Products</a></li>
 							<li><a href="">About</a></li>
 							<li><a href="">Contact</a></li>
 							<li><a href="">Account</a></li>
+							<li><a href="cart_limbo.php">Cart</a></li>
+							<li><a href="checkout_limbo.php">Checkout</a></li>
 							<li><a href="orders_limbo.php">Orders</a></li>
-							<li><a href="cart_limbo.php"><img src="images/cart.png" width="30px"
-							height="30px"></a></li>
 							<li>
 								<?php
 								if($loggedin) {
@@ -68,6 +69,7 @@ $categories = get_categories();
 							</li>
 						</ul>
 					</nav>
+					<img src="images/cart.png" width="30px" height="30px">
 					<img src="images/menu.png" class="menu-icon"
 					onclick="menutoggle()">
 				</div>
@@ -100,8 +102,8 @@ $categories = get_categories();
 						<h4><?php echo $product_entry['PNAME']; ?></h4>
 						<p>$<?php echo number_format($product_entry['PRICE'], 2); ?></p>
 						<form action="products_to_cart_limbo.php" method="post">
-							Amount: <input type="number" id="<?php $product_entry['PRODUCTID']; ?>"
-										name="<?php $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
+							Amount: <input type="number" id="<?php echo $product_entry['PRODUCTID']; ?>"
+										name="<?php echo $product_entry['PRODUCTID']; ?>" style="width:50px"; min="0">
 
 							<input type="submit" name="cart" id="cart" value="Add to Cart">
 						
@@ -112,7 +114,7 @@ $categories = get_categories();
 						
 						<!--<form class="center-text" method="post" action="products_to_cart_limbo.php">-->
 						<td><button type="submit" name="cart">To Cart</button></td>
-						<td><button type="submit" name="buy">Check Out</button></td>
+						<td><button type="submit" name="buy">Buy now</button></td>
 						</form>
 							<!--<table id="products_logged_table">
 								<tr>

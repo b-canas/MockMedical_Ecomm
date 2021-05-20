@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Home Page</title>
-
     <link rel="stylesheet" href="admin_files/admin_styles.css">
 </head>
 
@@ -11,6 +10,7 @@
         <div class="navbar">
             <div class="logo">
                 <!-- LINE FOR FUTURE LOGO <img src="images/ " width="125px"> -->
+				<span id="text_logo"><h1>VitiMins</h1></span>
             </div>
 
             <nav class="banner">
