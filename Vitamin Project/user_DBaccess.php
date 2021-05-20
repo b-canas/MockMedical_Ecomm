@@ -189,43 +189,43 @@ function update_user_column($user_id, $column, $value) {
     switch ($column) {
         case 'USERNAME':
         $stmt = $conn->prepare("UPDATE users SET USERNAME = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
 
         case 'PASSWORD':
         $stmt = $conn->prepare("UPDATE users SET PASSWORD = ? WHERE USERID = ?");
         $hashedPassword = password_hash($value, PASSWORD_DEFAULT);
-        $stmt->bind_param(si, $hashedPassword, $user_id);
+        $stmt->bind_param("si", $hashedPassword, $user_id);
         break;
 
         case 'ACCESS':
         $stmt = $conn->prepare("UPDATE users SET ACCESS = ? WHERE USERID = ?");
-        $stmt->bind_param(ii, $value, $user_id);
+        $stmt->bind_param("ii", $value, $user_id);
         break;
 
         case 'FNAME':
         $stmt = $conn->prepare("UPDATE users SET FNAME = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
 
         case 'LNAME':
         $stmt = $conn->prepare("UPDATE users SET LNAME = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
 
         case 'ADDRESS':
         $stmt = $conn->prepare("UPDATE users SET ADDRESS = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
 
         case 'PHONE':
         $stmt = $conn->prepare("UPDATE users SET PHONE = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
 
         case 'EMAIL':
         $stmt = $conn->prepare("UPDATE users SET EMAIL = ? WHERE USERID = ?");
-        $stmt->bind_param(si, $value, $user_id);
+        $stmt->bind_param("si", $value, $user_id);
         break;
     }
 

@@ -231,6 +231,95 @@ else if ($action == 'show_user_edit_form') {
 
 } //END OF if ($action == 'show_user_edit_form')
 
+else if ($action == 'show_personal_acc_manage_form') {
+
+    $pwd_change_attempt = filter_input(INPUT_GET, 'pwd_change');
+
+    $userID = $_SESSION['user_id'];
+    $user_entry = get_user_withID($userID)->fetch_assoc();
+
+    $current_username = $user_entry['USERNAME'];
+    $current_access = $user_entry['ACCESS'];
+    $current_fName = $user_entry['FNAME'];
+    $current_lName = $user_entry['LNAME'];
+    $current_address = $user_entry['ADDRESS'];
+    $current_phone = $user_entry['PHONE'];
+    $current_email = $user_entry['EMAIL'];
+
+    $current_users = get_all_users();   //will be used to access all existing user usernames
+
+    include('admin_files/personal_acc_manage_form.php');
+}
+
+else if ($action == 'update_acc') {
+
+    $userID = filter_input(INPUT_POST, 'user_id');
+    $user_entry = get_user_withID($userID)->fetch_assoc();
+
+    //Get any new values from the user_edit_form action.
+    $new_username = filter_input(INPUT_POST, 'new_username');
+    $new_password = filter_input(INPUT_POST, 'new_password');
+    $new_accessCode = filter_input(INPUT_POST, 'access_code');
+    $new_fName = filter_input(INPUT_POST, 'first_name');
+    $new_lName = filter_input(INPUT_POST, 'last_name');
+    $new_address = filter_input(INPUT_POST, 'address');
+    $new_phoneNum = filter_input(INPUT_POST, 'phone_number');
+    $new_email = filter_input(INPUT_POST, 'email');
+
+    //Get all the current values of the user attributes which were also passed along by the form
+    $current_username = filter_input(INPUT_POST, 'current_username');
+    $current_password = filter_input(INPUT_POST, 'old_password');
+    $current_access = filter_input(INPUT_POST, 'current_access');
+    $current_fName = filter_input(INPUT_POST, 'current_fName');
+    $current_lName = filter_input(INPUT_POST, 'current_lName');
+    $current_address = filter_input(INPUT_POST, 'current_address');
+    $current_phone = filter_input(INPUT_POST, 'current_phone');
+    $current_email= filter_input(INPUT_POST, 'current_email');
+
+    //Check for nulls and compare current/new values. If checks return true, update columns
+    if ($new_username != NULL && $new_username != $current_username) {
+        update_user_column($userID, 'USERNAME', $new_username);
+    }
+
+    if ($new_accessCode != NULL && $new_accessCode != $current_access) {
+        update_user_column($userID, 'ACCESS', $new_accessCode);
+    }
+
+    if ($new_fName != NULL && $new_fname != $current_fName) {
+        update_user_column($userID, 'FNAME', $new_fName);
+    }
+
+    if ($new_lName != NULL && $new_lName != $current_lName) {
+        update_user_column($userID, 'LNAME', $new_lName);
+    }
+
+    if ($new_address != NULL && $new_address != $current_address) {
+        update_user_column($userID, 'ADDRESS', $new_address);
+    }
+
+    if ($new_phoneNum != NULL && $new_phoneNum != $current_phone) {
+        update_user_column($userID, 'PHONE', $new_phoneNum);
+    }
+
+    if ($new_email != NULL && $new_email != $current_email) {
+        update_user_column($userID, 'EMAIL', $new_email);
+    }
+
+    if ($new_password != NULL) {
+
+        if (password_verify($current_password, $user_entry['PASSWORD'])) {
+            //Allow password change and logout
+            update_user_column($userID, 'PASSWORD', $new_password);
+            header("Location: ?action=log_off");
+
+        } else {
+            header("Location: ?action=show_personal_acc_manage_form&pwd_change=failed");
+        }
+    } else {
+        header("Location: ?action=show_personal_acc_manage_form");
+    }
+}
+
 /*
  * The action 'show_add_user_form' simply will call a page that displays a user registration form
  * A variable which contains data about currently registered users is created in order to validate

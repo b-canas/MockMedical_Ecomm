@@ -221,9 +221,9 @@
         if (phone != "" && !phoneNumRegexPattern.test(phone)) { //"if pattern fails..."
             alert("Invalid Phone Number format.")
             return false;   //not a valid form submission
-        } else {
-            return true;    //valid for submission
         }
+
+        return true;    //valid for submission
     }
 
     /*
@@ -249,4 +249,77 @@
             alert("Invalid Update. An order with a SHIPPED status must move to the DELIVERED state.")
             return false;
         }
+    }
+
+    /*
+     * Form validation for a personal account update. This validation differs from validateUserUpdate because of a
+     * password and confirm password field. Fields that need validation are:
+     * empty fields => at least one field must be filled in order to submit successfully
+     * 'username' => must be unique to this user
+     * 'new_password' && 'confirm_password' => check if new password field matches confirm password
+     * if password change request is made, old password field must be filled.
+     * 'email' => must match the regex pattern of a typical email
+     * 'phone_number' => must match the regex pattern of a typical phone number
+     */
+    function validateAccountUpdate() {
+
+        /* email regex verification taken from emailregex.com */
+        const emailRegexPattern = new RegExp("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`"
+                                            + "{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\"
+                                            + "x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")"
+                                            + "@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
+                                            + "(?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?"
+                                            + "[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?"
+                                            + "|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+                                            + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+"
+                                            + ")\\])");
+
+        /* phone number regex taken from https://www.baeldung.com/java-regex-validate-phone-numbers */
+        const phoneNumRegexPattern = new RegExp("^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$");
+
+        /* Get variables that need validation */
+        var username = document.forms["admin_update_acc_form"]["new_username"].value;
+        var oldPassword = document.forms["admin_update_acc_form"]["old_password"].value;
+        var newPassword = document.forms["admin_update_acc_form"]["new_password"].value;
+        var confirmPassword = document.forms["admin_update_acc_form"]["confirm_password"].value;
+        var phone = document.forms["admin_update_acc_form"]["phone_number"].value;
+        var email = document.forms["admin_update_acc_form"]["email"].value;
+
+        if (username != "") {
+            //get an array filled with existing usernames. Usernames must be unique to each account
+            var currentUsernames = [];
+            for (var col = 0; col < totalCols; col++) {
+               currentUsernames.push(table.rows[0].cells[col].innerHTML);
+            }
+
+            if (currentUsernames.includes(username)) {
+               alert("Invalid submission. Username is taken by an existing user. Refer to users page.");
+               return false;   //not a valid form submission
+            }
+        }
+
+        if (oldPassword != "" || newPassword != "" || confirmPassword != "") {
+            //A password change request is being made, so all these fileds must be filled.
+            if (oldPassword == "" || newPassword == "" || confirmPassword == "") {
+                alert("If password change request is being changed please make sure all password fields are filled.");
+                return false;
+            }
+            else if (newPassword != confirmPassword) {
+                alert("New Password does not match Confirm Password.")
+                return false;
+            }
+        }
+
+        /* Third check, do email/phone_num match their regex patterns? */
+        if (email != "" && !emailRegexPattern.test(email)) { //"if pattern fails..."
+            alert("Invalid Email Format.")
+            return false;   //not a valid form submission
+        }
+
+        if (phone != "" && !phoneNumRegexPattern.test(phone)) { //"if pattern fails..."
+            alert("Invalid Phone Number format.")
+            return false;   //not a valid form submission
+        }
+
+        return true;    //valid for submission
     }
