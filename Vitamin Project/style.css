@@ -3,6 +3,10 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: sans-serif;
+}
+h2, h3{
+	padding: 10px;
 }
 a{
 	text-decoration: none;
@@ -21,87 +25,103 @@ p{
 
 /* Navbar section */
 .navbar{
-	display: flex;
-	align-items: center;
-	padding: 20px;
+	/* Color: very pale grey */
+	background-color: #efefef;
+	border: 2px solid grey;
+	border-radius: 0 0 10px 10px;
+    display: flex;
+	margin-bottom: 50px;
+    padding: 50px 10px 10px;
 }
-nav{
+/* VitiMins logo */
+#text_logo{
+	display: inline-block;
+	font-size: 3em;
+	padding-left: 10px;
+}
+/* Links and cart section */
+nav.banner{
 	flex: 1;
-	text-align: right;
+	font-size: 1.1em;
+	padding: 60px 20px 10px;
+    text-align: right;
 }
-
 nav ul{
 	display: inline-block;
 	list-style-type: none;
 }
-
 nav ul li{
 	display: inline-block;
 	margin-right: 20px;
 }
 
+.btn{
+	display: inline-block;
+	background: #ff523b;
+	@@ -92,68 +91,19 @@ nav ul li{
+}
+/* Product grid units - products.php */
+.col-5{
+	/* Color: very pale grey */
+	background-color: #efefef;
+	border: 2px solid grey;
+	border-radius: 5px;
+	flex-basis: 20%;
+	padding: 15px;
+	min-width: 150px;
+	margin-bottom: 50px;
+	transition: transform 0.5s;
+}
+.col-5:hover{
+	/* Color: dark grey */
+	box-shadow: 0 3px 5px 5px #3e3e3e;
+	transform: translateY(-5px);
+}
+.col-5 img{
+	width: 100%;
+}
 
+/* Center column block for customer view - cart_view.php, checkout.php,
+   products_logged.php, products_unlogged.php, products_logged_added.php */
 .col-2{
-	flex-basis: 50%;
-	min-width: 300px;
+	background-color: #efefef;
+	border: 2px solid grey;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
 }
 .col-2 img{
 	max-width: 100%;
 	padding: 50px 0;
 }
 .col-2 h1{
-	font-size: 50px;
+	font-size: 2em;
 	line-height: 60px;
 	margin: 25px 0;
 }
-.btn{
-	display: inline-block;
-	background: #ff523b;
-	color: #fff;
-	padding: 8px 30px;
-	margin: 30px 0;
-	border-radius: 30px;
-	transition: background 0.5s;
+
+/* General table format */
+input{
+	border-radius: 2px solid grey;
+	padding: 3px;
 }
-.btn:hover{
-	background: #563434;
+button{
+	background-color: grey;
+	padding: 5px;
 }
 
-.header{
-	background: radial-gradient(#fff,#00a6d7);
-
+/* Cart table - cart_view.php; Checkout table - checkout.php; Product table, cust.
+   view - products_logged.php; Order table - orders.php */
+#cart_table, #checkout_table, #orders_table, #products_logged_table{
+	border-bottom: 3px solid black;
 }
-.header.row{
-	margin-top: 70px;
+#cart_table th, #checkout_table th, #orders_table th, #products_logged_table th{
+	border-bottom: 3px solid black;
+	padding: 0 3px;
 }
-
-/* Container for product grid - products.php */
-.small-container{
-	max-width: 1080px;
-	margin: auto;
-	padding-left: 25px;
-	padding-right: 25px;
-}
-/* Row format - products.php */
-.row{
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-around;
-}
-/* Product grid units - products.php */
-.col-5{
-	flex-basis: 20%;
-	padding: 10px;
-	min-width: 150px;
-	margin-bottom: 50px;
-	transition: transform 0.5s;
-}
-.col-5:hover{
-	transform: translateY(-5px);
-}
-.col-5 img{
-	width: 100%;
+#cart_table td, #checkout_table td, #orders_table td, #products_logged_table td{
+	padding: 5px;
 }
 
 /* Footer section */
