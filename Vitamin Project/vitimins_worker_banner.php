@@ -18,7 +18,7 @@
                     <li><a href="?action=show_products">Products</a></li>
                     <li><a href="?action=show_users">Users</a></li>
                     <li><a href="?action=view_user_orders">Orders</a></li>
-                    <li><a href="">Account Management</a></li>
+                    <li><a href="?action=show_personal_acc_manage_form">Account Management</a></li>
                     <li><a href="?action=log_off">Log Off</a></li>
                 </ul>
             </nav>
