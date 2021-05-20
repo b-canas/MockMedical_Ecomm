@@ -77,11 +77,18 @@ else if ($action == 'view_product') {
  *
  */
 else if ($action == 'show_edit_form') {
-    $productID = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT); //check POST level for productID variable
+
+    $productID = filter_input(INPUT_POST, 'product_id'); //check POST level for productID variable
+    if ($productID == NULL) {
+        $productID = filter_input(INPUT_GET, 'product_id');
+    }
+
     $categories = get_categories();
 
     $product = get_product($productID);
     $product_entry = $product->fetch_assoc();
+
+    $products = get_all_products(); //will be used to access all existing product IDs
 
     include('admin_files/product_edit.php');
 } //END OF if ($action == 'show_edit_form'
@@ -115,6 +122,11 @@ else if ($action == 'update_product') {
         update_column($productID, 'PRICE', $newPrice);
     }
 
+    $newImage = filter_input(INPUT_POST, 'new_image');
+    if ($newImage !== '' && $newImage !== NULL && $newImage !== FALSE) {
+        update_column($productID, 'PIMAGE', $newImage);
+    }
+
     //THIS MUST BE LAST CHECK IN FORM
     //Since all sql queries use the product id as a key, ID must be changed last
     $newID = filter_input(INPUT_POST, 'new_id');
@@ -122,10 +134,10 @@ else if ($action == 'update_product') {
         update_column($productID, 'PRODUCTID', $newID);
     }
 
-    if ($newCategory !== '' && $newCategory !== NULL && $newCategory !== FALSE)
-        header("Location: ?category=$newCategory");
+    if ($newID !== '' && $newID !== NULL && $newID !== FALSE)
+        header("Location: ?action=show_edit_form&product_id=$newID");
     else
-        header("Location: ?category=$category");
+        header("Location: ?action=show_edit_form&product_id=$productID");
 } //END OF if ($action == 'update_product')
 
 /*
@@ -165,8 +177,9 @@ else if ($action == 'add_product') {
     $category = filter_input(INPUT_POST, 'category');
     $initialStock = filter_input(INPUT_POST, 'stock');
     $price = filter_input(INPUT_POST, 'price');
+    $image = filter_input(INPUT_POST, 'image');
 
-    add_product($productID, $productName, $category, $initialStock, $price);
+    add_product($productID, $productName, $category, $initialStock, $price, $image);
 
     //After product insertion, return to product add form
     //These variables are created to act as sort of a reference when creating a new product
@@ -212,15 +225,111 @@ else if ($action == 'show_user_edit_form') {
     $current_phone = $user_entry['PHONE'];
     $current_email = $user_entry['EMAIL'];
 
+    $current_users = get_all_users();   //will be used to access all existing user usernames
+
     include('admin_files/admin_user_management.php');
 
 } //END OF if ($action == 'show_user_edit_form')
 
+else if ($action == 'show_personal_acc_manage_form') {
+
+    $pwd_change_attempt = filter_input(INPUT_GET, 'pwd_change');
+
+    $userID = $_SESSION['user_id'];
+    $user_entry = get_user_withID($userID)->fetch_assoc();
+
+    $current_username = $user_entry['USERNAME'];
+    $current_access = $user_entry['ACCESS'];
+    $current_fName = $user_entry['FNAME'];
+    $current_lName = $user_entry['LNAME'];
+    $current_address = $user_entry['ADDRESS'];
+    $current_phone = $user_entry['PHONE'];
+    $current_email = $user_entry['EMAIL'];
+
+    $current_users = get_all_users();   //will be used to access all existing user usernames
+
+    include('admin_files/personal_acc_manage_form.php');
+}
+
+else if ($action == 'update_acc') {
+
+    $userID = filter_input(INPUT_POST, 'user_id');
+    $user_entry = get_user_withID($userID)->fetch_assoc();
+
+    //Get any new values from the user_edit_form action.
+    $new_username = filter_input(INPUT_POST, 'new_username');
+    $new_password = filter_input(INPUT_POST, 'new_password');
+    $new_accessCode = filter_input(INPUT_POST, 'access_code');
+    $new_fName = filter_input(INPUT_POST, 'first_name');
+    $new_lName = filter_input(INPUT_POST, 'last_name');
+    $new_address = filter_input(INPUT_POST, 'address');
+    $new_phoneNum = filter_input(INPUT_POST, 'phone_number');
+    $new_email = filter_input(INPUT_POST, 'email');
+
+    //Get all the current values of the user attributes which were also passed along by the form
+    $current_username = filter_input(INPUT_POST, 'current_username');
+    $current_password = filter_input(INPUT_POST, 'old_password');
+    $current_access = filter_input(INPUT_POST, 'current_access');
+    $current_fName = filter_input(INPUT_POST, 'current_fName');
+    $current_lName = filter_input(INPUT_POST, 'current_lName');
+    $current_address = filter_input(INPUT_POST, 'current_address');
+    $current_phone = filter_input(INPUT_POST, 'current_phone');
+    $current_email= filter_input(INPUT_POST, 'current_email');
+
+    //Check for nulls and compare current/new values. If checks return true, update columns
+    if ($new_username != NULL && $new_username != $current_username) {
+        update_user_column($userID, 'USERNAME', $new_username);
+    }
+
+    if ($new_accessCode != NULL && $new_accessCode != $current_access) {
+        update_user_column($userID, 'ACCESS', $new_accessCode);
+    }
+
+    if ($new_fName != NULL && $new_fname != $current_fName) {
+        update_user_column($userID, 'FNAME', $new_fName);
+    }
+
+    if ($new_lName != NULL && $new_lName != $current_lName) {
+        update_user_column($userID, 'LNAME', $new_lName);
+    }
+
+    if ($new_address != NULL && $new_address != $current_address) {
+        update_user_column($userID, 'ADDRESS', $new_address);
+    }
+
+    if ($new_phoneNum != NULL && $new_phoneNum != $current_phone) {
+        update_user_column($userID, 'PHONE', $new_phoneNum);
+    }
+
+    if ($new_email != NULL && $new_email != $current_email) {
+        update_user_column($userID, 'EMAIL', $new_email);
+    }
+
+    if ($new_password != NULL) {
+
+        if (password_verify($current_password, $user_entry['PASSWORD'])) {
+            //Allow password change and logout
+            update_user_column($userID, 'PASSWORD', $new_password);
+            header("Location: ?action=log_off");
+
+        } else {
+            header("Location: ?action=show_personal_acc_manage_form&pwd_change=failed");
+        }
+    } else {
+        header("Location: ?action=show_personal_acc_manage_form");
+    }
+}
+
+/*
+ * The action 'show_add_user_form' simply will call a page that displays a user registration form
+ * A variable which contains data about currently registered users is created in order to validate
+ * the new user's username.  Usernames must be unique to each user.
+ */
 else if ($action == 'show_add_user_form') {
 
-    //No variables are prepared here. The form is called
-    include('admin_files/admin_add_user.php');
+    $current_users = get_all_users();   //will be used to access all existing user usernames
 
+    include('admin_files/admin_add_user.php');
 }
 
 else if ($action == 'add_user') {
@@ -383,7 +492,7 @@ else if ($action == 'update_order_status') {
 
     $viewOrderDetailsFlag = filter_input(INPUT_POST, 'view_order_details_flag');    //If this variable is set, go to view_order_details action
 
-    if ($newStatus != $oldStatus) {
+    if ($newStatus != NULL && $newStatus != $oldStatus) {
         update_orderno_status($orderno, $newStatus);
     }
 
