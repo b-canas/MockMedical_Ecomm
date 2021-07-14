@@ -40,15 +40,13 @@
 						<span id="text_logo"><h1>VitiMins</h1></span>
 					</div>
 					
-					<nav>
+					<nav class="banner">
 						<ul id="MenuItems">
 							<li><a href="index.php" class="active">Home</a></li>
 							<li><a href="products_limbo.php">Products</a></li>
-							<li><a href="">About</a></li>
-							<li><a href="">Contact</a></li>
+							<li><a href="about.php">About</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<li><a href="">Account</a></li>
-							<li><a href="cart_limbo.php">Cart</a></li>
-							<li><a href="checkout_limbo.php">Checkout</a></li>
 							<li><a href="orders_limbo.php">Orders</a></li>
 							<li>
 								<?php
@@ -62,7 +60,8 @@
 							</li>
 						</ul>
 					</nav>
-					<img src="images/cart.png" width="30px" height="30px">
+					<a href="cart_limbo.php"><img src="images/cart.png" width="30px"
+					   height="30px"></a>
 					<img src="images/menu.png" class="menu-icon"
 					onclick="menutoggle()">
 				</div>
@@ -71,7 +70,7 @@
 					<div class="col-2">
 						<h1>VitiMins!</h1>
 						<p>Get your Vital Vitamins from the best Vitamin Distributor in the US!</p>
-						<a href="" class="btn">Explore Now &#8594;</a>
+						<a href="products_logged.php" class="btn">Explore Now &#8594;</a>
 					</div>
 					<div class="col-2">
 						<img src="images/vitaminBottle.png">

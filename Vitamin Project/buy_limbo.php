@@ -44,11 +44,5 @@
 		header("location: buy_success.php");
 		exit;
 	}
-	else {
-		echo "buy fail";
-		$_SESSION['buy_success']=$buySuccess;
-		header("location: buy_failure.php");
-		exit;
-	}
 	
 ?>

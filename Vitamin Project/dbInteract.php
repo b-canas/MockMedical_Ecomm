@@ -249,7 +249,7 @@
 			
 			$amount=0;
 			
-			if(isset($v_post["$productid"])&&$v_post["$productid"]!="") {
+			if(isset($v_post["$productid"]) && $v_post["$productid"]!="") {
 				
 				nl();
 				$amount=$v_post["$productid"];

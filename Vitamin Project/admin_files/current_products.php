@@ -26,7 +26,7 @@
 
     <div class="products_column"> <!-- will display a table with products in selected category -->
         <h2><?php echo $category;?> Products | <a href="?action=show_add_product_form"> Add New Product</a></h2>
-        <table>
+        <table class="full_page_table">
             <tr>
                 <th>ID #</th>
                 <th>Name</th>

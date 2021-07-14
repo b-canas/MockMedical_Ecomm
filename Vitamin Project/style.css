@@ -54,6 +54,17 @@ nav ul li{
 	display: inline-block;
 	margin-right: 20px;
 }
+/* Both cart and hamburger icons */
+.navbar img{
+	margin-top: 60px;
+}
+/* Hamburger menu icon */
+.menu-icon{
+	width: 28px;
+	height: 40px;
+	display: none;
+	margin-left: 20px;
+}
 
 .btn{
 	display: inline-block;
@@ -131,13 +142,28 @@ nav ul li{
 	margin: 25px 0;
 }
 
+/* Aboot page - about.php */
+.col-2_aboot{
+	background-color: #9e9e9e;
+	border: 2px solid grey;
+	display: block;
+	border-radius: 5px;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
+}
+
 /* General table format */
 input{
 	border-radius: 2px solid grey;
 	padding: 3px;
 }
+/* Format for all buttons */
 button{
 	background-color: grey;
+	margin: 20px 10px;
 	padding: 5px;
 }
 
@@ -173,8 +199,50 @@ button{
 .copyright{
 	text-align: center;
 }
-.menu-icon{
-	width: 28px;
-	margin-left: 20px;
-	display: none;
+
+/* Media Query for Tablet */
+
+@media only screen and (max-width: 800px){
+
+    nav.banner{
+		display: inline-block;
+		padding: 0;
+	}
+	nav.banner ul{
+        position: absolute;
+        top: 180px;
+        left: 0;
+        background: #333;
+		margin: 0 25px;
+        width: 100%;
+        overflow: auto;
+        transition: max-height 0.5s;
+    }
+    nav.banner ul li{
+        display: block;
+        margin-right: 50px;
+        margin-top: 1px;
+		padding: 10px;
+    }
+    nav.banner ul li a{
+        color: #fff;
+    }
+	nav.banner a: hover{
+        color: #f0f0f0;
+    }
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/* Media Query for Mobile */
+
+@media only screen and (max-width: 600px){
+    .row{
+    text-align: center;
+    }
+    .col-2,.col-5{
+        flex-basis: 100%;
+    }
 }

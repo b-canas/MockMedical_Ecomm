@@ -19,7 +19,7 @@
 	}
 	else {
 		echo "unlogged";
-		header("location: index.php");
+		header("location: login.php");
 	}
 	echo "<br>";
 	

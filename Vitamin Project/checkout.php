@@ -35,20 +35,18 @@
 			<div class="container">
 			
 				<div class="navbar">
-				<div class="logo">
-					<!-- <img src="images/ " width="125px"> -->
-					<span id="text_logo"><h1>VitiMins</h1></span>
-				</div>
+					<div class="logo">
+						<!-- <img src="images/ " width="125px"> -->
+						<span id="text_logo"><h1>VitiMins</h1></span>
+					</div>
 					
-					<nav>
+					<nav class="banner">
 						<ul id="MenuItems">
-							<li><a href="index.php" >Home</a></li>
-							<li><a href="products_limbo.php" class="active">Products</a></li>
-							<li><a href="">About</a></li>
-							<li><a href="">Contact</a></li>
+							<li><a href="index.php" class="active">Home</a></li>
+							<li><a href="products_limbo.php">Products</a></li>
+							<li><a href="about.php">About</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<li><a href="">Account</a></li>
-							<li><a href="cart_limbo.php">Cart</a></li>
-							<li><a href="checkout_limbo.php">Checkout</a></li>
 							<li><a href="orders_limbo.php">Orders</a></li>
 							<li>
 								<?php
@@ -62,7 +60,8 @@
 							</li>
 						</ul>
 					</nav>
-					<img src="images/cart.png" width="30px" height="30px">
+					<a href="cart_limbo.php"><img src="images/cart.png" width="30px"
+					   height="30px"></a>
 					<img src="images/menu.png" class="menu-icon"
 					onclick="menutoggle()">
 				</div>

@@ -46,16 +46,13 @@ $categories = get_categories();
 					<!-- <img src="images/ " width="125px"> -->
 					<span id="text_logo"><h1>VitiMins</h1></span>
 				</div>
-					
-					<nav>
+					<nav class="banner">
 						<ul id="MenuItems">
-							<li><a href="index.php" >Home</a></li>
-							<li><a href="products_limbo.php" class="active">Products</a></li>
-							<li><a href="">About</a></li>
-							<li><a href="">Contact</a></li>
+							<li><a href="index.php" class="active">Home</a></li>
+							<li><a href="products_limbo.php">Products</a></li>
+							<li><a href="about.php">About</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							<li><a href="">Account</a></li>
-							<li><a href="cart_limbo.php">Cart</a></li>
-							<li><a href="checkout_limbo.php">Checkout</a></li>
 							<li><a href="orders_limbo.php">Orders</a></li>
 							<li>
 								<?php
@@ -69,7 +66,8 @@ $categories = get_categories();
 							</li>
 						</ul>
 					</nav>
-					<img src="images/cart.png" width="30px" height="30px">
+					<a href="cart_limbo.php"><img src="images/cart.png" width="30px"
+					   height="30px"></a>
 					<img src="images/menu.png" class="menu-icon"
 					onclick="menutoggle()">
 				</div>
@@ -79,7 +77,7 @@ $categories = get_categories();
 						<!-- EDIT-->
 						<!--<h2>List of Products</h2>
 						<h3>Select the products you wish to purchase.</h3>-->
-						<div class="small-container">
+			<div class="small-container">
 
 			<?php while ($category_entry = $categories->fetch_assoc()) {
 				$category = $category_entry['CATEGORY'];
@@ -113,8 +111,8 @@ $categories = get_categories();
 			<?php } echo '</div>'; } ?>
 						
 						<!--<form class="center-text" method="post" action="products_to_cart_limbo.php">-->
-						<td><button type="submit" name="cart">To Cart</button></td>
-						<td><button type="submit" name="buy">Buy now</button></td>
+						<td><button type="submit" name="cart">Add All to Cart</button></td>
+						<td><button type="submit" name="buy">Check Out</button></td>
 						</form>
 							<!--<table id="products_logged_table">
 								<tr>

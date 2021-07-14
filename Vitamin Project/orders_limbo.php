@@ -18,7 +18,7 @@
 	}
 	else {
 		echo "unlogged";
-		header("location: index.html");
+		header("location: login.php");
 		exit;
 	}
 	echo "<br>";

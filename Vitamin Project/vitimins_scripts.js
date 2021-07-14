@@ -240,7 +240,7 @@
         var currentStatus = document.forms[formName]["current_order_status"].value;
         var newStatus = document.forms[formName]["status_choices"].value;
 
-        if (currentStatus == "READY" && (newStatus != "SHIPPED" || newStatus != "CANCELLED")) {
+        if (currentStatus == "READY" && (newStatus != "SHIPPED" && newStatus != "CANCELLED")) {
             alert("Invalid Update. An order with a READY status must move to either the SHIPPED or CANCELLED state.");
             return false;
         }
