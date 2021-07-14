@@ -33,7 +33,7 @@
                 echo '<a href="?action=view_user_orders&user_id='.$userID.'&wanted_status='.$option.'">'.$option.' | </a>';
             } ?>
         </p>
-        <table>
+        <table class="full_page_table">
             <tr>
                 <th>Order No.</th>
                 <th>User ID</th>

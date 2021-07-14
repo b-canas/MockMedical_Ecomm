@@ -10,8 +10,9 @@
     <div class="container">
         <div class="navbar">
             <div class="logo">
-                <!-- LINE FOR FUTURE LOGO <img src="images/ " width="125px"> -->
-            </div>
+				<!-- <img src="images/ " width="125px"> -->
+				<span id="text_logo"><h1>VitiMins</h1></span>
+			</div>
 
             <nav class="banner">
                 <ul id="MenuItems">

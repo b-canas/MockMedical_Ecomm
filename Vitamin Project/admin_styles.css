@@ -1,15 +1,12 @@
 /* Overall Section */
 *{
-    font-family: sans-serif;
-	margin: 0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 /* Wrapper classes */
 main.box {
-	padding: 0 50px 150px;
-	margin: 0 auto;
-	max-width: 1300px;
+	padding-bottom: 150px;
 }
 .container{
     max-width: 1300px;
@@ -23,20 +20,11 @@ h1{
 }
 h2{
 	font-size: 1.75em;
-	padding: 5px 0;
-}
-a{
-	text-decoration: none;
-}
-ul{
-	list-style-type: none;
 }
 
 /* Navbar bits */
 .navbar{
-	/* Color: very pale grey */
-	background-color: #efefef;
-	border: 2px solid grey;
+	background: white;
 	border-radius: 0 0 10px 10px;
     display: flex;
 	margin-bottom: 50px;
@@ -70,8 +58,6 @@ nav.banner a{
 /* Hamburger Menu */
 .menu-icon{
     width: 28px;
-	height: 40px;
-	margin-top: 75px;
     margin-left: 20px;
     display: none;
 }
@@ -118,16 +104,12 @@ nav.banner a{
     text-align: center;
 }
 
-/* General table settings */
-input{
-	padding: 3px;
-}
 /* Products grid - current_products.php */
 /* Categories on LHS */
 .products_row {
-    margin: 0 auto;
-	max-width: 1300px;
-	padding: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+	padding: 0 3px;
 }
 /* Clearfix (clear floats) */
 .products_row::after {
@@ -138,17 +120,7 @@ input{
 .products_column {
     float: left;
     width: 50%;
-	margin-bottom: 100px;
-    padding: 10px;
-}
-/* LHS Categories list - current_products.php */
-.products_column nav ul li{
-	padding: 3px 0;
-}
-/* Account info form - personal_acc_manage_form.php */
-.products_column input, label{
-	padding: 1px 0;
-	margin: 3px 0;
+    padding: 5px;
 }
 /* All Products Table */
 #current_products_table{
@@ -168,24 +140,12 @@ input{
     width: 33%;
     padding: 5px;
 }
-/* Product individual view list - */
-.product_column p{
-	padding: 3px;
-}
 
-/* Admin view tables - order_details.php */
 table.full_page_table {
-	border-bottom: 3px solid black;
     width: 100%;
     padding-bottom: 50px;
 }
-.full_page_table th{
-	border-bottom: 3px solid black;
-	padding: 0 3px;
-}
-.full_page_table td{
-	padding: 5px;
-}
+
 table.full_page_table tr td {
      text-align: center;
 }
@@ -195,7 +155,7 @@ table.full_page_table tr td {
 @media only screen and (max-width: 800px){
 
     nav.banner{
-		/*display: inline-block;*/
+		display: inline-block;
 		padding: 0;
 	}
 	nav.banner ul{
@@ -224,13 +184,6 @@ table.full_page_table tr td {
         display: block;
         cursor: pointer;
     }
-	.menu-icon: hover .banner{
-		display: block;
-	}
-	.products_column{
-		margin-bottom: 10px;
-		width: 100%;
-	}
 }
 
 /* Media Query for Mobile */
